@@ -1,6 +1,6 @@
 import React from "react";
 import { SafeAreaView, View, Text, TextInput } from 'react-native'
-import ButtonsComponent from "../components/molecules/ButtonSaveEdit";
+import ButtonsComponent from "../components/molecules/ButtonsComponent";
 
 
 const AddToDoForm = () => {
