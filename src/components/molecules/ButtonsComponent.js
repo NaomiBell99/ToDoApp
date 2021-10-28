@@ -3,11 +3,11 @@ import { StyleSheet, View } from 'react-native'
 import ButtonComponent from '../atom/Button'
 
 
-const ButtonsComponent = ({ type }) => {
+const ButtonsComponent = ({ type, todo }) => {
 
     return(
         <View style={type === 'add' ? styles.containerBtnAdd : styles.containerBtn}>
-             <ButtonComponent label={type==='add' ? '+' : type === 'save' ? 'Save' : 'Edit'} type={type==='add' ? 'add' : type==='save' ? 'save' : 'edit'}/>
+             <ButtonComponent todo={todo} label={type==='add' ? '+' : type === 'save' ? 'Save' : 'Edit'} type={type==='add' ? 'add' : type==='save' ? 'save' : 'edit'}/>
         </View>
     )
 }

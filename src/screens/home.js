@@ -2,11 +2,19 @@ import React, {useState, useEffect} from "react";
 import { SafeAreaView, StyleSheet, Text, View, FlatList, TouchableOpacity, Button, ActivityIndicator } from "react-native";
 import ButtonComponent from "../components/molecules/ButtonsComponent";
 import axios from 'axios'
+import {store} from '../store'
+import { Provider } from 'react-redux'
+import { useSelector } from "react-redux";
 
-
-const HomeScreen = () =>{
+const HomeScreen = (completedTodo) =>{
     const [isLoading, setLoading] = useState(false)
     const [listData, setData] = useState([])
+
+    const dataId = useSelector((state) => state.addtodo.id)
+    const dataText = useSelector((state) => state.addtodo.text)
+    const dataIsDone = useSelector((state) => state.addtodo.isDone)
+
+  
 
     const urlGetDataList = 'https://api.fake.rest/189bf93b-4d78-4f00-86ac-76d87cfccbd1/task/list'
     const onPressGetData = async () => {
@@ -17,7 +25,6 @@ const HomeScreen = () =>{
         if(status === 200 && data){
             setLoading(false)
             setData(data.data)
-            console.log(listData[0].isDone)
         }
     }
 
@@ -47,20 +54,26 @@ const HomeScreen = () =>{
         <SafeAreaView style={styles.view}>
             <Text style={styles.title}>To Do App</Text>
             <View style={styles.container}>
-                <FlatList
-                    data={listData}
-                    renderItem={({item, index}) => {
-                        return(
-                            <TouchableOpacity style={ styles.todoList}>
-                                <Text onPress={onPressEdit} style={styles.todoEdit}>{item.name}</Text>
-                                <Button title={"Delete"} style={styles.todoDelete} onPress={onPressDelete}/>
-                            </TouchableOpacity>
-                        )
-                    }}
-                    keyExtractor={(item) => item.id}
-                />
+                <Provider store={store}>
+                    <FlatList
+                        data={listData}
+                        renderItem={({item, index}) => {
+                            return(
+                                <TouchableOpacity  style={ styles.todoList}>
+                                    <Text onPress={onPressEdit} style={{
+                                        textDecorationLine: item.isDone ? 'line-through':"none",
+                                        width: "80%",
+                                        fontSize: 20
+                                    }}>{item.name}</Text>
+                                    <Button title={"Delete"} style={styles.todoDelete} onPress={onPressDelete}/>
+                                </TouchableOpacity>
+                            )
+                        }}
+                        keyExtractor={(item) => item.id}
+                    />
+                </Provider>
             </View>
-            <ButtonComponent type='add'/>
+            <ButtonComponent type='add' todo={listData}/>
         </SafeAreaView>
     )
 }
@@ -112,10 +125,6 @@ const styles = StyleSheet.create ({
         alignItems: "center"
     },
 
-    todoEdit: {
-        width: "80%",
-        fontSize: 20
-    },
 
     todoDelete: {
         padding: "auto"

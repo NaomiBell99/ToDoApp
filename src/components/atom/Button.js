@@ -5,11 +5,14 @@ import { useNavigation } from '@react-navigation/native';
 
 
 
-const ButtonComponent = ({label, type}) =>{
+const ButtonComponent = ({label, type, todo}) =>{
     const navigation = useNavigation();
-
     return(
-        <TouchableOpacity onPress={type === 'add' ? ()=>navigation.navigate('AddToDo') : ()=>navigation.navigate('Home')}>
+        <TouchableOpacity onPress={type === 'add' ?  () => {
+            navigation.navigate('AddToDo', {
+              todolist : todo
+            });
+          } : ()=>navigation.navigate('App')}>
             <Text style={styles.btnText}>{label}</Text>
         </TouchableOpacity>
     )
