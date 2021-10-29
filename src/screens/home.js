@@ -14,8 +14,11 @@ const HomeScreen = (completedTodo) =>{
     const dataText = useSelector((state) => state.addtodo.text)
     const dataIsDone = useSelector((state) => state.addtodo.isDone)
 
-  
+    if(dataId){
+        listData.push({id: dataId, name: dataText, isDone: dataIsDone})
+    }
 
+    
     const urlGetDataList = 'https://api.fake.rest/189bf93b-4d78-4f00-86ac-76d87cfccbd1/task/list'
     const onPressGetData = async () => {
         setLoading(true)
@@ -44,6 +47,7 @@ const HomeScreen = (completedTodo) =>{
 
     const onPressEdit = () => {
         console.log('editt')
+        console.log(listData)
     }
 
     const onPressDelete = () => {
