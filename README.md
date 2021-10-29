@@ -32,4 +32,4 @@ Untuk menjalankan project ini:
 
 
 Kendala :
-Kendala yang dihadapi oleh kelompok kami adalah, setiap anggota terdapat kesibukannya masing - masing dalam pekerjaan, seperti sudah terdapat banyak project yang sedang berjalan dan hal tersebut membuat kami susah untuk dapat memulai project ini, sehingga kami hanya dapat mengerjakan sejauh mungkin yang kami bisa selama ada waktu luang
+Kendala yang dihadapi oleh kelompok kami adalah, setiap anggota terdapat kesibukannya masing - masing dalam pekerjaan, seperti sudah terdapat banyak project yang sedang berjalan dan hal tersebut membuat kami susah untuk dapat memulai project ini, sehingga kami hanya dapat mengerjakan sejauh mungkin yang kami bisa selama ada waktu luang. Tidak hanya itu, beberapa anggota kelompok juga mendapati kendala error saat menjalankan project ini pada Visual Studio Code, sehingga code harus digabungkan secara manual
